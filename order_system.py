@@ -30,7 +30,7 @@ def place_order(menu):
     # TODO: Create a continuous while loop so customers can order multiple items
     while True:
         # TODO: Ask the customer what they want to order
-        input("What would you like to order? we have:")
+        print("What would you like to order? we have:")
 
         # Create a variable for the menu item number
         i = 1
@@ -53,12 +53,13 @@ def place_order(menu):
                 i += 1
 
         # TODO: Ask customer to input menu item number
-        input("input item number please: ")
+        user_selection = input("input item number please: ")
 
         # TODO: Update the order list using the update_order function
-        # ?
         # TODO: Send the order list, menu selection, and menu items as arguments
-
+        orders = update_order(orders, user_selection, menu)
+        
+        
 
         # TODO: Ask the customer if they would like to order anything else
         # TODO: Let the customer know if they should type 'n' or 'N' to quit
