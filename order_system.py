@@ -75,7 +75,7 @@ def place_order(menu):
             # TODO: Use list comprehension to create a list called prices_list,
             # TODO: which contains the total prices for each item in the order list:
             # TODO: The total price for each item should multiply the price by quantity
-            prices_list = [item.price * item.quantity for item in order] # something like this
+            prices_list = [item["Price"] * item["Quantity"] for item in order] # something like this
 
             # TODO: Create an order_total from the prices list using sum()
             # TODO: Round the prices to 2 decimal places.
@@ -136,8 +136,9 @@ def update_order(order, menu_selection, menu_items):
                 "Price": menu_items[int_menu_selection]["Price"],
                 "Quantity": item_quantity,
             }
-            order += order_details_dictionary # were trying this
-            
+            #order += order_details_dictionary # were trying this
+            order.append(order_details_dictionary)
+
 
         # TODO: When the user's input isn't valid, 
         # TODO: tell the customer that their input isn't valid
@@ -166,13 +167,14 @@ def print_itemized_receipt(receipt):
                     and quantity ordered.
     """
     # Uncomment the following line if you need to check the structure of the receipt
-    print(receipt)
+    #print(receipt)
 
     # TODO: Loop through the items in the customer's receipt
-    for r in receipt:
+    for dictionary in receipt:
         # TODO Store the dictionary items as variables
-        menu_item_name, price, quantity = r
-
+        menu_item_name = dictionary["Item name"]
+        price = dictionary["Price"]
+        quantity = dictionary["Quantity"]
         # TODO: Print the receipt line using the print_receipt_line function
         # TODO: Send the item name, price, and quantity as separate arguments
         print_receipt_line(menu_item_name, price, quantity)
@@ -260,17 +262,7 @@ def get_menu_items_dict(menu):
 
     Returns:
     menu_items (dictionary): A dictionary containing the menu items and their
-                            prices.
-    returns:
-        1: {
-            "Item name": Burrito - Chicken,
-            "Price": 4.49
-            },
-        2: {
-            "Item name": etc,
-            "Price": etc
-            }
-        
+                            prices. 
     """
     # Create an empty dictionary to store the menu items
     menu_items = {}
